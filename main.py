@@ -14,8 +14,8 @@ logger = logging.getLogger(__name__)
 
 #get arguments from command
 parser = argparse.ArgumentParser()
-parser.add_argument("--alpha", type=float, required=False, default=0.5)
-parser.add_argument("--l1_ratio", type=float, required=False, default=0.5)
+parser.add_argument("--alpha", type=float, required=False, default=0.7)
+parser.add_argument("--l1_ratio", type=float, required=False, default=0.8)
 args = parser.parse_args()
 
 #evaluation function
