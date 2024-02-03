@@ -11,7 +11,7 @@
 
 `mlflow.get_tracking_uri()`: Get the current tracking URI. This may not correspond to the tracking URI of the currently active run, since the tracking URI can be updated via ``set_tracking_uri``. <br>
 
-## Experiment
+### Experiment
 `mlflow.create_experiment(name, artifact_location, tags)`: Create an experiment with a given name and optional artifact location and tags. The machine learning runs will be stored in this experiment. <br>
 
 `mlflow.set_experiment(experiment_name, experiment_id)`: Set the given experiment as the active experiment. The experiment must either be specified by name via experiment_name or by ID via experiment_id. The experiment name and ID cannot both be specified. <br>
