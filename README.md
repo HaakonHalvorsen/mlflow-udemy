@@ -50,7 +50,3 @@
 `mlflow.set_tag(key, value)`: Set a tag under the current run. If no run is active, this method will create a new active run. <br>
 
 `mlflow.set_tags(tags)`: Log a batch of tags for the current run. If no run is active, this method will create a new active run. <br>
-
-
-Just a test.
-
