@@ -2,5 +2,7 @@ mlflow
 pandas
 numpy
 scikit-learn
+seaborn
+matplotlib
 setuptools
 importlib-metadata==4.13.0
