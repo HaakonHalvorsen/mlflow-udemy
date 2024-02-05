@@ -104,7 +104,7 @@ if __name__ == '__main__':
     #   training metrics: accuracy, f1 score, log loss, precision, recall, roc, auc
     #   tags: estimator_name and estimator_class
     #   artifacts: training confusion matrix, model, estimator.html
-    mlflow.autolog()
+    mlflow.autolog(silent=True)
     
     with mlflow.start_run(experiment_id=experiment.experiment_id,
                           description=run_description,
