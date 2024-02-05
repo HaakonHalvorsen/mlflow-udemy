@@ -8,8 +8,6 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import ElasticNet
 import mlflow
 import mlflow.sklearn
-from pathlib import Path
-import os
 
 logging.basicConfig(level=logging.WARN)
 logger = logging.getLogger(__name__)
