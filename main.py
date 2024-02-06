@@ -49,7 +49,7 @@ if __name__ == "__main__":
     l1_ratio = args.l1_ratio
     
     # Set tracking URI
-    mlflow.set_tracking_uri(uri="") # <----- Set where the runs should be stored locally or remote
+    mlflow.set_tracking_uri(uri="http://127.0.0.1:5000") # <----- Set where the runs should be stored locally or remote
     #mlflow.get_tracking_uri()
     
     # Create experiment
@@ -58,7 +58,7 @@ if __name__ == "__main__":
     #    tags={"version": "v1", "priority": "p1"},
     #    artifact_location=Path.cwd().joinpath("myartifacts").as_uri())
     
-    exp = mlflow.set_experiment(experiment_name="experiment_autolog")
+    exp = mlflow.set_experiment(experiment_name="experiment_tracking_server")
     #get_exp = mlflow.get_experiment(exp_id)
     
     # Log experiment metadata
