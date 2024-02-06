@@ -8,6 +8,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import ElasticNet
 import mlflow
 import mlflow.sklearn
+from mlflow.models.signature import infer_signature
 
 logging.basicConfig(level=logging.WARN)
 logger = logging.getLogger(__name__)
@@ -49,7 +50,7 @@ if __name__ == "__main__":
     l1_ratio = args.l1_ratio
     
     # Set tracking URI
-    mlflow.set_tracking_uri(uri="http://127.0.0.1:5000") # <----- Set where the runs should be stored locally or remote
+    mlflow.set_tracking_uri(uri="") # <----- Set where the runs should be stored locally or remote
     #mlflow.get_tracking_uri()
     
     # Create experiment
@@ -58,7 +59,7 @@ if __name__ == "__main__":
     #    tags={"version": "v1", "priority": "p1"},
     #    artifact_location=Path.cwd().joinpath("myartifacts").as_uri())
     
-    exp = mlflow.set_experiment(experiment_name="experiment_tracking_server")
+    exp = mlflow.set_experiment(experiment_name="experiment_signature")
     #get_exp = mlflow.get_experiment(exp_id)
     
     # Log experiment metadata
@@ -80,7 +81,9 @@ if __name__ == "__main__":
     }
     mlflow.set_tags(tags)
     mlflow.autolog(
-        log_input_examples=True
+        log_input_examples=False,
+        log_model_signatures=False,
+        log_models=False
     )
     
     current_run = mlflow.active_run()
@@ -96,8 +99,17 @@ if __name__ == "__main__":
     print("  MAE: %s" % mae)
     print("  R2: %s" % r2)
     
+    signature = infer_signature(test_x, predicted_qualities)
+    input_example = {
+        "columns": np.array(test_x.columns),
+        "data": np.array(test_x.values)
+    }
+    
     # Log the data
     mlflow.log_artifact("data/red-wine-quality.csv")
+    
+    # Log model
+    mlflow.sklearn.save_model(lr, "model", signature=signature, input_example=input_example)
     
     # Get information from the active run
     active_run = mlflow.active_run()
